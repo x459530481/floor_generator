@@ -71,15 +71,15 @@ class DatabaseBuilderWriter extends Writer {
       ..type = refer('String'));
 
     final createTableStatements =
-    _generateCreateTableSqlStatements(database.entities)
+    _generateCreateTableSqlStatements(_database.entities)
         .map((statement) => "await database.execute('$statement');")
         .join('\n');
-    final createIndexStatements = database.entities
+    final createIndexStatements = _database.entities
         .map((entity) => entity.indices.map((index) => index.createQuery()))
         .expand((statements) => statements)
         .map((statement) => "await database.execute('$statement');")
         .join('\n');
-    final createViewStatements = database.views
+    final createViewStatements = _database.views
         .map((view) => view.getCreateViewStatement())
         .map((statement) => "await database.execute('''$statement''');")
         .join('\n');
