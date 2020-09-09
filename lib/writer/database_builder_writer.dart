@@ -63,9 +63,6 @@ class DatabaseBuilderWriter extends Writer {
         ..name = 'callback'
         ..type = refer('Callback'))));
 
-    final versionParameter = Parameter((builder) => builder
-      ..name = 'version'
-      ..type = refer('int'));
     final pswParameter = Parameter((builder) => builder
       ..name = 'psw'
       ..type = refer('String'));
@@ -96,7 +93,7 @@ class DatabaseBuilderWriter extends Writer {
         final database = _\$$_databaseName();
         
         database.database = await sqlcipher.openDatabase(path,
-        version: version,
+        version: ${_database.version},
         onConfigure: (database) async {
           await database.execute('PRAGMA foreign_keys = ON');
         },
@@ -118,7 +115,7 @@ class DatabaseBuilderWriter extends Writer {
         password: psw);
         return database;
       ''')
-      ..requiredParameters.addAll([versionParameter,pswParameter]));
+      ..requiredParameters.add(pswParameter));
 
     return Class((builder) => builder
       ..name = databaseBuilderName
