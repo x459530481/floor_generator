@@ -18,7 +18,9 @@ dependencies:
   build_config: ^0.4.1+1
   collection: ^1.14.11
   floor_annotation:
-    path: ../floor_annotation/
+    git:
+      url: 'https://github.com/x459530481/floor_annotation.git'
+      ref: 11970268b1de08df7b880e797995920f07559d82
 
 dev_dependencies:
   test: ^1.11.0
