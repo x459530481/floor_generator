@@ -134,4 +134,9 @@ class DatabaseBuilderWriter extends Writer {
         buildMethod,
       ]));
   }
+
+  @nonNull
+  List<String> _generateCreateTableSqlStatements(final List<Entity> entities) {
+    return entities.map((entity) => entity.getCreateTableStatement()).toList();
+  }
 }
