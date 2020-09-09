@@ -65,10 +65,10 @@ class DatabaseBuilderWriter extends Writer {
 
     final versionParameter = Parameter((builder) => builder
       ..name = 'version'
-      ..toThis = refer('int'));
+      ..type = refer('int'));
     final pswParameter = Parameter((builder) => builder
       ..name = 'psw'
-      ..toThis = refer('String'));
+      ..type = refer('String'));
 
     final createTableStatements =
     _generateCreateTableSqlStatements(database.entities)
